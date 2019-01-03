@@ -458,6 +458,7 @@ MonoBehaviour:
   MaxNeighborDist: 2
   MinTimerInt: 0.5
   MaxTimerInt: 4
+  FollowObj: {fileID: 0}
 --- !u!1 &272779931
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +580,7 @@ MonoBehaviour:
   MaxNeighborDist: 2
   MinTimerInt: 0.5
   MaxTimerInt: 4
+  FollowObj: {fileID: 0}
 --- !u!1 &366557913
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +720,7 @@ MonoBehaviour:
   maxRotationSpeed: 12
   neighbourDistance: 1
   spawnRadius: 0.001
-  speedVariation: 0.01
+  speedVariation: 0.1
   followTarget: 1
   target: {fileID: 1761572503}
   minTargetPoints: 5
@@ -762,6 +764,7 @@ MonoBehaviour:
   MaxNeighborDist: 2
   MinTimerInt: 0.5
   MaxTimerInt: 4
+  FollowObj: {fileID: 0}
 --- !u!1 &527450575
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,6 +854,7 @@ MonoBehaviour:
   MaxNeighborDist: 2
   MinTimerInt: 0.5
   MaxTimerInt: 4
+  FollowObj: {fileID: 0}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,6 +1026,7 @@ MonoBehaviour:
   MaxNeighborDist: 2
   MinTimerInt: 0.5
   MaxTimerInt: 4
+  FollowObj: {fileID: 0}
 --- !u!1 &743559793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,8 +1160,8 @@ MonoBehaviour:
   movementAxis: 0
   debugDraw: 0
   fishesCount: 1000
-  minSpeed: 6
-  maxSpeed: 15
+  minSpeed: 10
+  maxSpeed: 20
   minRotationSpeed: 6
   maxRotationSpeed: 12
   neighbourDistance: 1
@@ -1205,6 +1210,7 @@ MonoBehaviour:
   MaxNeighborDist: 3
   MinTimerInt: 0.2
   MaxTimerInt: 1
+  FollowObj: {fileID: 366557914}
 --- !u!1 &1274294394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,6 +1703,7 @@ MonoBehaviour:
   MaxNeighborDist: 2
   MinTimerInt: 0.5
   MaxTimerInt: 4
+  FollowObj: {fileID: 0}
 --- !u!1 &1941872474
 GameObject:
   m_ObjectHideFlags: 0
