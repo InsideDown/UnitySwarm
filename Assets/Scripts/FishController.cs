@@ -33,7 +33,7 @@ namespace FishFlock
 
             if(FollowObj != null)
             {
-                _StartingPos = FollowObj.position;
+                _StartingPos = FollowObj.localPosition;
                 _RandomMotion = FollowObj.gameObject.GetComponent<RandomMotion>();
             }
         }
@@ -64,6 +64,8 @@ namespace FishFlock
                 //get a new neighbor distance
                 float ranNeighborDistance = UnityEngine.Random.Range(MinNeighborDist, MaxNeighborDist);
                 FishFlockController.neighbourDistance = ranNeighborDistance;
+                FishFlockController.InitNeighborDistance = ranNeighborDistance;
+                FishFlockController.UserNeighborDistance = ranNeighborDistance * 2.0f;
             }
 
             if (FollowObj != null)
@@ -85,12 +87,12 @@ namespace FishFlock
             FishFlockController.minSpeed = _MinSpeed * 20;
             FishFlockController.maxSpeed = _MaxSpeed * 20;
             Vector3 newPos = new Vector3(_StartingPos.x, _StartingPos.y, _StartingPos.z - 20);
-            FollowObj.DOMove(newPos, 2.0f).OnComplete(AnimIn);
+            FollowObj.DOLocalMove(newPos, 2.0f).OnComplete(AnimIn);
         }
 
         private void AnimIn()
         {
-            FollowObj.DOMove(_StartingPos, 2.0f).OnComplete(AnimComplete).SetDelay(1.5f);
+            FollowObj.DOLocalMove(_StartingPos, 2.0f).OnComplete(AnimComplete).SetDelay(1.5f);
         }
 
         private void AnimComplete()

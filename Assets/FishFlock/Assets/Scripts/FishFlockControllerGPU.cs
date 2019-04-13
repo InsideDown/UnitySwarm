@@ -60,6 +60,12 @@ namespace FishFlock
         public float maxRotationSpeed = 10;
         [Tooltip("Desired distance between neighbours")]
         public float neighbourDistance = 1f;
+
+        [HideInInspector]
+        public float InitNeighborDistance;
+        [HideInInspector]
+        public float UserNeighborDistance;
+
         [Tooltip("Spawn Radius of the fishes")]
         public float spawnRadius;
         [Tooltip("Variation speed that will be applied to the normal speed of the fishes.")]
@@ -106,8 +112,40 @@ namespace FishFlock
         const int GROUP_SIZE = 256;
         Transform myTransform;
 
+        
+        private float _InitSpeedMultiplier = 1.0f;
+        private float _UserFoundSpeedMultiplier = 1.7f;
+        private float _SpeedMultiplier;
+
+        private void OnEnable()
+        {
+            EventManager.OnKinectUserFound += EventManager_OnKinectUserFound;
+            EventManager.OnKinectUserLost += EventManager_OnKinectUserLost;
+        }
+        
+        private void OnDisable()
+        {
+            EventManager.OnKinectUserFound -= EventManager_OnKinectUserFound;
+            EventManager.OnKinectUserLost -= EventManager_OnKinectUserLost;
+        }
+
+        private void EventManager_OnKinectUserFound()
+        {
+            _SpeedMultiplier = _UserFoundSpeedMultiplier;
+            neighbourDistance = UserNeighborDistance;
+        }
+
+        private void EventManager_OnKinectUserLost()
+        {
+            _SpeedMultiplier = _InitSpeedMultiplier;
+            neighbourDistance = InitNeighborDistance;
+        }
+
         private void Awake()
         {
+            InitNeighborDistance = neighbourDistance;
+            UserNeighborDistance = (float)neighbourDistance * 2f;
+            _SpeedMultiplier = _InitSpeedMultiplier;
             myTransform = transform;
 
             int collidersLength = boxColliders.Length;
@@ -236,6 +274,7 @@ namespace FishFlock
             computeShader.SetFloat("collisionForce", force);
             computeShader.SetInt("collisionCount", collisionDataLength);
             computeShader.SetFloat("speedVariation", speedVariation);
+            computeShader.SetFloat("speedMultiplier", _SpeedMultiplier);
             computeShader.SetBuffer(this.kernelHandle, "fishBuffer", fishBuffer);
             computeShader.SetBuffer(kernelHandle, "collisionBuffer", collisionBuffer);
 

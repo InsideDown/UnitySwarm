@@ -49,6 +49,7 @@ CBUFFER_START(Params)
 	uint collisionCount;
 	float collisionForce;
 	float speedVariation;
+	float speedMultiplier;
 	int movementMode;
 CBUFFER_END
 
@@ -61,7 +62,7 @@ void CSMain(uint3 id : SV_DispatchThreadID)
 	float noise = clamp(noise1(_Time / 100.0 + fish.speed_offset), -1, 1) * 2.0 - 1.0;
 	float noise_dist = clamp(noise1(_Time / 100.0 + fish.speed_offset), -1, 1) * 2.0 - 1.0;
 
-	float speed = fish.speed * (1.0 + noise * speedVariation);
+	float speed = speedMultiplier * (fish.speed * (1.0 + noise * speedVariation));
 
 	float3 fish_position = fish.position;
 	float3 fish_velocity = fish.velocity;

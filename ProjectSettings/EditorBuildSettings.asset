@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/RegularLogo.unity
+    guid: 17ea540e250e9c749b8b690a2f9f8705
+  - enabled: 1
+    path: Assets/Scenes/FlockLogo.unity
     guid: 03ea0d7b5b2669d4790772b42536a2f3
+  - enabled: 1
+    path: Assets/Scenes/Logo3D.unity
+    guid: caed293e93441c24388986c0b2d608b3
   m_configObjects: {}
